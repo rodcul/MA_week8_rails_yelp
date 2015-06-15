@@ -19,6 +19,17 @@ feature 'restaurants' do
         expect(page).to have_content('MaccyDs')
         expect(current_path).to eq '/restaurants'
     end
+
+    context 'invalid restaurant' do
+      scenario 'enters a name that is too short' do
+        visit '/restaurants'
+        click_link 'Add a restaurant'
+        fill_in 'Name', with: 'Mc'
+        click_button 'Create Restaurant'
+        expect(page).not_to have_css 'h2', text: 'Mc'
+        expect(page).to have_content('error')
+      end
+    end
   end
   context 'restaurant added' do
     before do
