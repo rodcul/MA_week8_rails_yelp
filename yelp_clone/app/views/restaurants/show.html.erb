@@ -1,2 +1,6 @@
 <p> <%=@restaurant.name %> </p>
 <p> <%=@restaurant.description %> </p>
+<%=@restaurant.reviews.each do |restaurant| %>
+  <p> <%=restaurant.thoughts%> </p>
+  <span> <%=restaurant.rating%> </span>
+<%end%>
