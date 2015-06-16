@@ -2,6 +2,15 @@ require 'rails_helper'
 
 feature 'restaurants' do
 
+  before do
+    visit ('/')
+    click_link('Sign up')
+    fill_in("Email", with: 'test@example.com')
+    fill_in("Password", with: 'testtest')
+    fill_in("Password confirmation", with: 'testtest')
+    click_button('Sign up')
+  end
+
   context 'no restaurants added yet' do
     scenario 'prompt to add a restaurant' do
       visit('/restaurants')
@@ -54,7 +63,12 @@ feature 'restaurants' do
   end
 
   context 'editing restaurants' do
-    before {Restaurant.create(name: 'MaccyDs')}
+    before do
+      visit ('/')
+      click_link('Add a restaurant')
+      fill_in 'Name', with: 'MaccyDs'
+      click_button 'Create Restaurant'
+    end
 
     scenario 'let a user edit a restaurant' do
       visit '/restaurants'
@@ -66,7 +80,12 @@ feature 'restaurants' do
     end
   end
     context 'deleting restaurants' do
-      before {Restaurant.create(name: 'MaccyDs')}
+      before do
+        visit ('/')
+        click_link('Add a restaurant')
+        fill_in 'Name', with: 'MaccyDs'
+        click_button 'Create Restaurant'
+      end
 
       scenario 'lets a user delete a restuarant' do
         visit '/restaurants'
