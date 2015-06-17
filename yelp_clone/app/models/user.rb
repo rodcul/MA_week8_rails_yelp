@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
         # user.image = auth.info.image # assuming the user model has an image
       end
    end
+
+  def has_reviewed?(restaurant)
+    reviewed_restaurants.include? restaurant
+  end
 end

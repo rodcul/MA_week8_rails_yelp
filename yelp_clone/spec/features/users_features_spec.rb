@@ -42,7 +42,7 @@ feature 'User sign in and out' do
       expect(page).not_to have_link('Sign up')
     end
 
-    it "and can only leave one review per restaurant" do
+    xit "and can only leave one review per restaurant" do
       visit '/'
       click_link 'Add a restaurant'
       fill_in 'Name', with: 'KFC'
