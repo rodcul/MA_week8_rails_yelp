@@ -8,19 +8,13 @@
       <%restaurant.reviews.each do |review| %>
         <ul>
           <li><%=review.thoughts%></li> <strong><%= review.rating %></strong>/5
+          <li> Average rating: <%=restaurant.average_rating.to_i%><li>
         </ul>
       <%end%>
     <%else%>
         <p> No Reviews Yet </p>
     <%end%>
-
-    <% if current_user %>
-      <% if current_user.has_reviewed?(restaurant) %>
-        You have already reviewed this
-      <% else %>
         <%=link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
-      <% end %>
-    <% end %>
 
     <%if current_user%>
         <% if current_user.id == restaurant.user_id %>
