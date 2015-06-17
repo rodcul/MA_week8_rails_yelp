@@ -9,8 +9,4 @@
     </ul>
   <%end%>
   </section>
-<%=form_for @restaurant do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
-<%end %>
+<%= render partial: "form", locals: {restaurant: @restaurant}%>
