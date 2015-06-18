@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "restaurants#index"
-  mount API::Restaurantapi => '/'
+  mount API::APIV1 => '/'
 
   devise_for :users, :controllers =>{ :omniauth_callbacks => "users/omniauth_callbacks"}
   resources :restaurants, shallow: true do

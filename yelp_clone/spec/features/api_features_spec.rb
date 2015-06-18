@@ -1,12 +1,12 @@
 require 'rails_helper'
 # require "rack/test"
 #
-# describe Restaurantapi do
+# describe APIV1 do
 #   def app
 #     Rails.application
 #   end
 #
-#   describe Restaurantapi do
+#   describe APIV1 do
 #     include Rack::Test::Methods
 # #
 #     before do
@@ -29,13 +29,21 @@ describe "API" , :type => :api do
 
 
   before do
-    Restaurant.create(name:'Urthcafe')
+    @restaurant = Restaurant.create(name:'Urthcafe')
+    @restaurant.reviews.create(thoughts: 'Fine', rating: 5)
   end
 
-  it "request restaurants" do
+  it "requests restaurants" do
     get "/api/restaurants",:formate =>:json
     expect(last_response.status).to eq(200)
     expect(JSON.parse(last_response.body).first['name']).to eq('Urthcafe')
+  end
+
+  it "requests reviews" do
+    get "/api/restaurants/#{@restaurant.id}/reviews", :formate =>:json
+    expect(last_response.status).to eq(200)
+    expect(JSON.parse(last_response.body).first['thoughts']).to eq('Fine')
+    expect(JSON.parse(last_response.body).first['rating']).to eq(5)
   end
 
 end
