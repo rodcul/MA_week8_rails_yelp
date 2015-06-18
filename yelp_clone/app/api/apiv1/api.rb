@@ -11,6 +11,19 @@ module API
         Restaurant.all
       end
 
+      desc "create a new Restaurant"
+
+      params do
+        requires :name, type: String
+        requires :description, type: String
+      end
+
+      post do
+        Restaurant.create(name: params[:name], description: params[:description])
+      end
+
+      desc "Show restaurant reviews"
+
       get '/:restaurant_id/reviews' do
         @restaurant = Restaurant.find(params[:restaurant_id])
         @restaurant.reviews
