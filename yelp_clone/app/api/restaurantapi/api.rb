@@ -4,7 +4,7 @@ module API
     format :json
     prefix :api
 
-    resource :restaurant_data do
+    resource :restaurants do
       desc "List all Restaurants"
 
       get do
